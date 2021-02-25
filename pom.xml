@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.unidac.unidac-api</groupId>
-	<artifactId>desafioUnidac-api</artifactId>
+	<artifactId>desafiounidacapi</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>desafioUnidac-api</name>
 	<description>Demo project for Spring Boot</description>

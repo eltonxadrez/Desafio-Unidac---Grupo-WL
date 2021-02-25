@@ -35,7 +35,7 @@ public class ColaboradorResource {
 	@PostMapping
 	public void criar(@Valid @RequestBody Colaborador colaborador, HttpServletResponse response) {
 		Colaborador colaboradorVerificado = ignorarCodigo(colaborador, new Colaborador());
-		colaboradorRepository.salvar(colaboradorVerificado.getNome(), colaboradorVerificado.getCpf());		
+		colaboradorRepository.salvar(colaboradorVerificado.getNome(), colaboradorVerificado.getCpf());
 	}
 	
 	//Atualizar colaborador
