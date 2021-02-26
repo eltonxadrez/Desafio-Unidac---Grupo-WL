@@ -23,6 +23,7 @@ import com.example.unidac.api.model.OpcaoAlimento;
 import com.example.unidac.api.repository.ColaboradorRepository;
 import com.example.unidac.api.repository.OpcaoAlimentoRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/opcoes")
 public class OpcaoAlimentoResource {
@@ -34,7 +35,7 @@ public class OpcaoAlimentoResource {
 	ColaboradorRepository colaboradorRepository;
 
 	// Salvar uma opção de alimento
-	@CrossOrigin
+	
 	@PostMapping
 	public ResponseEntity<?> criar(@Valid @RequestBody OpcaoAlimento opcaoAlimento, HttpServletResponse response) {
 //		OpcaoAlimento opcaoAlimentoVerificado = ignorarCodigo(opcaoAlimento, new OpcaoAlimento());
@@ -52,7 +53,6 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Atualizar as opções de alimento
-	@CrossOrigin
 	@PutMapping("/{codigo}")
 	public void atualizar(@Valid @RequestBody OpcaoAlimento opcaoAlimento, @PathVariable Long codigo,
 			HttpServletResponse response) {
@@ -60,7 +60,6 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Listar todas as opções de alimento
-	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<?> listar() {
 		List<OpcaoAlimento> opcaoAlimentos = opcaoAlimentoRepository.listarTodos();
@@ -68,7 +67,6 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Listar opções de alimento pelo código
-	@CrossOrigin
 	@GetMapping("/{codigo}")
 	public ResponseEntity<List<OpcaoAlimento>> buscarPeloCodigo(@PathVariable Long codigo) {
 		List<OpcaoAlimento> opcaoAlimentos = opcaoAlimentoRepository.listarPorCodigo(codigo);
@@ -76,7 +74,6 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Deletar opções de alimento pelo código
-	@CrossOrigin
 	@DeleteMapping("/{codigo}")
 	public void delete(@PathVariable Long codigo) {
 		opcaoAlimentoRepository.deletarPorCodigo(codigo);

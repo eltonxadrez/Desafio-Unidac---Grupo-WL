@@ -25,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.unidac.api.model.Colaborador;
 import com.example.unidac.api.repository.ColaboradorRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/colaboradores")
 public class ColaboradorResource {
@@ -33,7 +34,6 @@ public class ColaboradorResource {
 	ColaboradorRepository colaboradorRepository;
 	
 	//Salvar colaborador
-	@CrossOrigin
 	@PostMapping
 	public void criar(@Valid @RequestBody Colaborador colaborador, HttpServletResponse response) {
 		Colaborador colaboradorVerificado = ignorarCodigo(colaborador, new Colaborador());
@@ -41,14 +41,12 @@ public class ColaboradorResource {
 	}
 	
 	//Atualizar colaborador
-	@CrossOrigin
 	@PutMapping("/{codigo}")
 	public void atualizar(@Valid @RequestBody Colaborador colaborador, @PathVariable Long codigo,HttpServletResponse response) {
 		colaboradorRepository.atualizar(colaborador.getNome(), colaborador.getCpf(), codigo);
 	}
 	
 	//Listar todos os colaboradores
-	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<?> listar() {
 		List<Colaborador> colaboradores = colaboradorRepository.listarTodos();
@@ -56,7 +54,6 @@ public class ColaboradorResource {
 	}
 
 	//Listar colaboradores pelo código
-	@CrossOrigin
 	@GetMapping("/{codigo}")
 	public ResponseEntity<List<Colaborador>> buscarPeloCodigo(@PathVariable Long codigo) {
 		List<Colaborador> colaboradores = colaboradorRepository.listarPorCodigo(codigo);
@@ -64,7 +61,6 @@ public class ColaboradorResource {
 	}
 
 	//Deletar colaborador pelo código
-	@CrossOrigin
 	@DeleteMapping("/{codigo}")
 //	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long codigo) {
