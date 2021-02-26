@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class OpcaoAlimentoResource {
 	ColaboradorRepository colaboradorRepository;
 
 	// Salvar uma opção de alimento
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<?> criar(@Valid @RequestBody OpcaoAlimento opcaoAlimento, HttpServletResponse response) {
 //		OpcaoAlimento opcaoAlimentoVerificado = ignorarCodigo(opcaoAlimento, new OpcaoAlimento());
@@ -50,6 +52,7 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Atualizar as opções de alimento
+	@CrossOrigin
 	@PutMapping("/{codigo}")
 	public void atualizar(@Valid @RequestBody OpcaoAlimento opcaoAlimento, @PathVariable Long codigo,
 			HttpServletResponse response) {
@@ -57,6 +60,7 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Listar todas as opções de alimento
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<?> listar() {
 		List<OpcaoAlimento> opcaoAlimentos = opcaoAlimentoRepository.listarTodos();
@@ -64,6 +68,7 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Listar opções de alimento pelo código
+	@CrossOrigin
 	@GetMapping("/{codigo}")
 	public ResponseEntity<List<OpcaoAlimento>> buscarPeloCodigo(@PathVariable Long codigo) {
 		List<OpcaoAlimento> opcaoAlimentos = opcaoAlimentoRepository.listarPorCodigo(codigo);
@@ -71,6 +76,7 @@ public class OpcaoAlimentoResource {
 	}
 
 	// Deletar opções de alimento pelo código
+	@CrossOrigin
 	@DeleteMapping("/{codigo}")
 	public void delete(@PathVariable Long codigo) {
 		opcaoAlimentoRepository.deletarPorCodigo(codigo);

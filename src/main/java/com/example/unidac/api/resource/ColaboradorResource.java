@@ -33,7 +33,7 @@ public class ColaboradorResource {
 	ColaboradorRepository colaboradorRepository;
 	
 	//Salvar colaborador
-	
+	@CrossOrigin
 	@PostMapping
 	public void criar(@Valid @RequestBody Colaborador colaborador, HttpServletResponse response) {
 		Colaborador colaboradorVerificado = ignorarCodigo(colaborador, new Colaborador());
@@ -41,7 +41,7 @@ public class ColaboradorResource {
 	}
 	
 	//Atualizar colaborador
-	
+	@CrossOrigin
 	@PutMapping("/{codigo}")
 	public void atualizar(@Valid @RequestBody Colaborador colaborador, @PathVariable Long codigo,HttpServletResponse response) {
 		colaboradorRepository.atualizar(colaborador.getNome(), colaborador.getCpf(), codigo);
@@ -64,6 +64,7 @@ public class ColaboradorResource {
 	}
 
 	//Deletar colaborador pelo código
+	@CrossOrigin
 	@DeleteMapping("/{codigo}")
 //	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long codigo) {
