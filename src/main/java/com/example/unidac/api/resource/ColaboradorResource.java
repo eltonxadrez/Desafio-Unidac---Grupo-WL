@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class ColaboradorResource {
 	ColaboradorRepository colaboradorRepository;
 	
 	//Salvar colaborador
+	
 	@PostMapping
 	public void criar(@Valid @RequestBody Colaborador colaborador, HttpServletResponse response) {
 		Colaborador colaboradorVerificado = ignorarCodigo(colaborador, new Colaborador());
@@ -39,12 +41,14 @@ public class ColaboradorResource {
 	}
 	
 	//Atualizar colaborador
+	
 	@PutMapping("/{codigo}")
 	public void atualizar(@Valid @RequestBody Colaborador colaborador, @PathVariable Long codigo,HttpServletResponse response) {
 		colaboradorRepository.atualizar(colaborador.getNome(), colaborador.getCpf(), codigo);
 	}
 	
 	//Listar todos os colaboradores
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<?> listar() {
 		List<Colaborador> colaboradores = colaboradorRepository.listarTodos();
@@ -52,6 +56,7 @@ public class ColaboradorResource {
 	}
 
 	//Listar colaboradores pelo código
+	@CrossOrigin
 	@GetMapping("/{codigo}")
 	public ResponseEntity<List<Colaborador>> buscarPeloCodigo(@PathVariable Long codigo) {
 		List<Colaborador> colaboradores = colaboradorRepository.listarPorCodigo(codigo);
